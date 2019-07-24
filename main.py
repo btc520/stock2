@@ -14,6 +14,10 @@ name = raw_input("Stock name? ")
 share = raw_input("Share? ")
 price = raw_input("price? ")
 
-data[name].append = ({'share':share, 'price': price})
+if data.has_key(name):
+	data[name].append({'share':share, 'price': price})
+else:
+	data[name] = {'share':share, 'price': price}
 
-json.dump(data, file)
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)
