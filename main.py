@@ -5,15 +5,15 @@
  
 import json
 
-while True:
-	menu();
 	
 def menu ():
 	print("1. input and save. 2. print and check 3. update")
 	
 	menu_value = raw_input("select")
-	if menu_value = 1:
-		IN_SA();
+	if menu_value == '1':
+		IN_SA()
+	elif menu_value == '2':
+		P_C()		
 	
 def IN_SA ():
 	with open('data.json') as json_file:
@@ -34,4 +34,8 @@ def IN_SA ():
 	with open('data.json', 'w') as outfile:
 		json.dump(data, outfile)
 
-def P_C
+def P_C ():
+	print("...")	
+
+while True:
+        menu()
