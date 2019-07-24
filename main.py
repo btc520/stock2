@@ -7,7 +7,7 @@ import json
 
 	
 def menu ():
-	print("1. input and save. ~2. print and check 3. update 4. create new database")
+	print("1. input and save. ~2. print and check 3. update 4. create new database 5. del one stock all records")
 	
 	menu_value = raw_input("select in menu")
 	if menu_value == '1':
@@ -16,7 +16,21 @@ def menu ():
 	#	P_C()		
 	elif menu_value == '4':
 		create_db()
+	elif menu_value == '5':
+		del_name()
+
 	P_C()
+
+def del_name ():
+	with open('data.json') as json_file:
+		data = json.load(json_file)
+
+	name = raw_input('enter the name')
+
+	del data[name]
+
+	with open('data.json', 'w') as outfile:
+		json.dump(data, outfile)
 
 def create_db ():
 	data = {'APPLE' :  {'price':1, 'share':1}}
