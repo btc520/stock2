@@ -7,13 +7,22 @@ import json
 
 	
 def menu ():
-	print("1. input and save. 2. print and check 3. update")
+	print("1. input and save. ~2. print and check 3. update 4. create new database")
 	
-	menu_value = raw_input("select")
+	menu_value = raw_input("select in menu")
 	if menu_value == '1':
 		IN_SA()
-	elif menu_value == '2':
-		P_C()		
+	#elif menu_value == '2':
+	#	P_C()		
+	elif menu_value == '4':
+		create_db()
+	P_C()
+
+def create_db ():
+	data = {'APPLE' :  {'price':1, 'share':1}}
+	with open('data.json', 'w') as outfile:
+		json.dump(data, outfile)
+
 	
 def IN_SA ():
 	with open('data.json') as json_file:
@@ -35,7 +44,10 @@ def IN_SA ():
 		json.dump(data, outfile)
 
 def P_C ():
-	print("...")	
+	with open('data.json') as json_file:
+		data = json.load(json_file)
+	print(json.dumps(data, indent=4, sort_keys=True))
 
-while True:
-        menu()
+
+
+menu()
