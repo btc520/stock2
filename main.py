@@ -9,7 +9,7 @@ import json
 from json2table import convert
 #json_object = {"key" : "value"}
 build_direction = "LEFT_TO_RIGHT"
-table_attributes = {"style" : "width:100%"}
+table_attributes = {"style" : "width:100%", "border" : 1, "class" : "table table-striped"}
 
 
 def menu ():
