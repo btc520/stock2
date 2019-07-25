@@ -4,8 +4,14 @@
 #API update current price
  
 import json
-from json2html import *
+#from jso2html import *
 	
+from json2table import convert
+#json_object = {"key" : "value"}
+build_direction = "LEFT_TO_RIGHT"
+table_attributes = {"style" : "width:100%"}
+
+
 def menu ():
 	print("1. input and save")
 	print("2. print log")
@@ -126,7 +132,8 @@ def P_C ():
 	with open('data.json') as json_file:
 		data = json.load(json_file)
 	print(json.dumps(data, indent=4, sort_keys=True))
-	html_data =  json2html.convert(json = data) 
+	#html_data =  json2html.convert(json = data) 
+	html_data = convert(data, build_direction=build_direction, table_attributes=table_attributes)
 	
 	index= open("/var/www/html/stock2/index.html","w")
     	index.write(html_data)
