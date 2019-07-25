@@ -12,6 +12,8 @@ def menu ():
 	print("~3. update")
 	print("4. create new database")
 	print("5. del one stock all records")
+	print("6. print summary")
+
 	menu_value = raw_input("select in menu")
 	if menu_value == '1':
 		IN_SA()
@@ -20,6 +22,7 @@ def menu ():
 	#	P_C()		
 	elif menu_value == '4':
 		create_db()
+		P_C()
 	elif menu_value == '5':
 		del_name()
 	elif menu_value == '6':
@@ -32,7 +35,7 @@ def Pnt_S ():
 	print(json.dumps(summary_data, indent=4, sort_keys=True))
 
 def summary():
-    with open('data.json') as json_file:
+    	with open('data.json') as json_file:
 		data = json.load(json_file)
 	stock_list = data.keys()
 
@@ -43,12 +46,12 @@ def summary():
 		total_share = 0 
 		summary_data[x] = [1, 2, 3, 4] # data in a list, create empty
 		for y in data[x]: # list of share and price
-				total_price = total_price + int(y['price'])
-				total_share = total_share + int(y['share'])
+				total_price = round(total_price + float(y['price']),3)
+				total_share = round(total_share + float(y['share']),3)
 				summary_data[x][0] = {'total_price':total_price} 
 				summary_data[x][1] = {'total_share': total_share}
 				
-				avr_price = total_price / total_share
+				avr_price = round(total_price / total_share, 3)
 				summary_data[x][2] = {'avr_price': avr_price}
 				
 	with open('summary_data.json', 'w') as outfile:

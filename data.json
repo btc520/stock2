@@ -1,1 +1,1 @@
-{"APPLE": [{"price": 1, "share": 1}], "BBB": [{"date": "19500101", "price": "1", "share": "1"}, {"date": "19600102", "price": "2", "share": "2"}]}
+{"DBC": [{"date": "19010101", "price": "1.04", "share": "3"}, {"date": "19010203", "price": "1.08", "share": "6"}], "APPLE": [{"price": 1, "share": 1}]}
