@@ -11,6 +11,18 @@ from json2table import convert
 build_direction = "LEFT_TO_RIGHT"
 table_attributes = {"style" : "width:100%", "border" : 1, "class" : "table table-striped"}
 
+html_header = """
+    
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Bootstrap 实例 - 边框表格</title>
+   <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+   <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+
+"""
 
 def menu ():
 	print("1. input and save")
@@ -136,6 +148,7 @@ def P_C ():
 	html_data = convert(data, build_direction=build_direction, table_attributes=table_attributes)
 	
 	index= open("/var/www/html/stock2/index.html","w")
+		index.write(html_header)
     	index.write(html_data)
     	index.close()
 	#with open('/var/www/html/stock2/index.html') as index:
