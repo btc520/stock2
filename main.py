@@ -4,7 +4,7 @@
 #API update current price
  
 import json
-
+from json2html import *
 	
 def menu ():
 	print("1. input and save")
@@ -126,7 +126,12 @@ def P_C ():
 	with open('data.json') as json_file:
 		data = json.load(json_file)
 	print(json.dumps(data, indent=4, sort_keys=True))
-
-
+	html_data =  json2html.convert(json = data) 
+	
+	index= open("/var/www/html/stock2/index.html","w")
+    	index.write(html_data)
+    	index.close()
+	#with open('/var/www/html/stock2/index.html') as index:
+        #	index.write("wrwerew")
 
 menu()
