@@ -11,8 +11,9 @@ def menu ():
 	print("2. print log")
 	print("~3. update")
 	print("4. create new database")
-	print("5. del one stock all records")
-	print("6. print summary")
+	print("5. del one stock")
+	print("6. del one record")
+	print("7. print summary")
 
 	menu_value = raw_input("select in menu")
 	if menu_value == '1':
@@ -25,10 +26,36 @@ def menu ():
 		P_C()
 	elif menu_value == '5':
 		del_name()
-	elif menu_value == '6':
+		
+	elif menu_value == '7':
 		summary()
 		Pnt_S ()
+		
+def del_name ():
+	with open('data.json') as json_file:
+		data = json.load(json_file)
+
+	name = raw_input('enter the name')
+	time = raw_input('enter the purchase time')
 	
+	for i in data: # i=list,  data is dict = {APPLE: [], DBC: []}
+		for j in i: # j is dict element
+			if j['date'] = int(time):
+				del i[j]
+
+	with open('data.json', 'w') as outfile:
+		json.dump(data, outfile)
+		
+def del_name ():
+	with open('data.json') as json_file:
+		data = json.load(json_file)
+
+	name = raw_input('enter the name')
+	del data[name]
+
+	with open('data.json', 'w') as outfile:
+		json.dump(data, outfile)
+		
 def Pnt_S ():
 	with open('summary_data.json') as json_file:
 		summary_data = json.load(json_file)
@@ -61,16 +88,7 @@ def summary():
                 json.dump(summary_data, outfile)
 
 
-def del_name ():
-	with open('data.json') as json_file:
-		data = json.load(json_file)
 
-	name = raw_input('enter the name')
-
-	del data[name]
-
-	with open('data.json', 'w') as outfile:
-		json.dump(data, outfile)
 
 def create_db ():
 	data = {'APPLE' : [ {'price':1, 'share':1}]}
