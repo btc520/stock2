@@ -42,16 +42,19 @@ def summary():
 	summary_data = {}
 	
 	for x in stock_list: # dict
-		total_price = 0
+		total_value = 0
 		total_share = 0 
 		summary_data[x] = [1, 2, 3, 4] # data in a list, create empty
 		for y in data[x]: # list of share and price
-				total_price = round(total_price + float(y['price']),3)
-				total_share = round(total_share + float(y['share']),3)
-				summary_data[x][0] = {'total_price':total_price} 
-				summary_data[x][1] = {'total_share': total_share}
 				
-				avr_price = round(total_price / total_share, 3)
+				total_share = round(total_share + float(y['share']),3)
+				
+				total_value = round( total_value + float(y['share']) * float(y['price']),3)
+				
+				summary_data[x][0] = {'total_price':total_price} 
+				summary_data[x][1] = {'total_value': total_share}
+				
+				avr_price = round(total_value / total_share, 3)
 				summary_data[x][2] = {'avr_price': avr_price}
 				
 	with open('summary_data.json', 'w') as outfile:
