@@ -7,11 +7,15 @@ import json
 
 	
 def menu ():
-	print("1. input and save. ~2. print and check 3. update 4. create new database 5. del one stock all records 6. print summary")
-	
+	print("1. input and save")
+	print("~2. print and check ")
+	print("~3. update")
+	print("4. create new database")
+	print("5. del one stock all records")
 	menu_value = raw_input("select in menu")
 	if menu_value == '1':
 		IN_SA()
+		P_C()
 	#elif menu_value == '2':
 	#	P_C()		
 	elif menu_value == '4':
@@ -20,11 +24,16 @@ def menu ():
 		del_name()
 	elif menu_value == '6':
 		summary()
-	P_C()
+		Pnt_S ()
+	
+def Pnt_S ():
+	with open('summary_data.json') as json_file:
+		summary_data = json.load(json_file)
+	print(json.dumps(summary_data, indent=4, sort_keys=True))
 
 def summary():
-        with open('data.json') as json_file:
-                data = json.load(json_file)
+    with open('data.json') as json_file:
+		data = json.load(json_file)
 	stock_list = data.keys()
 
 	summary_data = {}
@@ -32,14 +41,16 @@ def summary():
 	for x in stock_list: # dict
 		total_price = 0
 		total_share = 0 
-		summary_data[x] = [1, 2, 3, 4] # data in a list
+		summary_data[x] = [1, 2, 3, 4] # data in a list, create empty
 		for y in data[x]: # list of share and price
 				total_price = total_price + int(y['price'])
 				total_share = total_share + int(y['share'])
 				summary_data[x][0] = {'total_price':total_price} 
 				summary_data[x][1] = {'total_share': total_share}
+				
 				avr_price = total_price / total_share
 				summary_data[x][2] = {'avr_price': avr_price}
+				
 	with open('summary_data.json', 'w') as outfile:
                 json.dump(summary_data, outfile)
 
