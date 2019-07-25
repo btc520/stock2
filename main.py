@@ -32,7 +32,7 @@ def summary():
 	for x in stock_list: # dict
 		total_price = 0
 		total_share = 0 
-		summary_data[x] = [] # data in a list
+		summary_data[x] = [1, 2, 3, 4] # data in a list
 		for y in data[x]: # list of share and price
 				total_price = total_price + int(y['price'])
 				total_share = total_share + int(y['share'])
