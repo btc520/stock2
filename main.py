@@ -26,22 +26,28 @@ def menu ():
 		P_C()
 	elif menu_value == '5':
 		del_name()
+	elif menu_value == '6':
+		del_record()
 		
 	elif menu_value == '7':
 		summary()
 		Pnt_S ()
 		
-def del_name ():
+def del_record ():
 	with open('data.json') as json_file:
 		data = json.load(json_file)
 
 	name = raw_input('enter the name')
 	time = raw_input('enter the purchase time')
 	
-	for i in data: # i=list,  data is dict = {APPLE: [], DBC: []}
-		for j in i: # j is dict element
-			if j['date'] = int(time):
-				del i[j]
+	for i in data: # i=list
+		print(i)
+		for j in data[i]: # j is dict
+			#print(j)
+			if j["date"] == str(time):
+				print ("index", data[i].index(j))
+				position = data[i].index(j)		
+				del  data[i][position]
 
 	with open('data.json', 'w') as outfile:
 		json.dump(data, outfile)
@@ -91,7 +97,7 @@ def summary():
 
 
 def create_db ():
-	data = {'APPLE' : [ {'price':1, 'share':1}]}
+	data = {'APPLE' : [ {'date': 19710102, 'price':1, 'share':1}]}
 	with open('data.json', 'w') as outfile:
 		json.dump(data, outfile)
 
