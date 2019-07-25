@@ -8,7 +8,7 @@ import json
 	
 def menu ():
 	print("1. input and save")
-	print("~2. print and check ")
+	print("2. print log")
 	print("~3. update")
 	print("4. create new database")
 	print("5. del one stock all records")
@@ -18,8 +18,8 @@ def menu ():
 	if menu_value == '1':
 		IN_SA()
 		P_C()
-	#elif menu_value == '2':
-	#	P_C()		
+	elif menu_value == '2':
+		P_C()		
 	elif menu_value == '4':
 		create_db()
 		P_C()
@@ -46,16 +46,16 @@ def summary():
 		total_share = 0 
 		summary_data[x] = [1, 2, 3, 4] # data in a list, create empty
 		for y in data[x]: # list of share and price
+			
+			total_share = round(total_share + float(y['share']),3)
 				
-				total_share = round(total_share + float(y['share']),3)
+			total_value = round( total_value + float(y['share']) * float(y['price']),3)
 				
-				total_value = round( total_value + float(y['share']) * float(y['price']),3)
+			summary_data[x][0] = {'total_price':total_value} 
+			summary_data[x][1] = {'total_share': total_share}
 				
-				summary_data[x][0] = {'total_price':total_price} 
-				summary_data[x][1] = {'total_value': total_share}
-				
-				avr_price = round(total_value / total_share, 3)
-				summary_data[x][2] = {'avr_price': avr_price}
+			avr_price = round(total_value / total_share, 3)
+			summary_data[x][2] = {'avr_price': avr_price}
 				
 	with open('summary_data.json', 'w') as outfile:
                 json.dump(summary_data, outfile)
