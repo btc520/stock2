@@ -26,17 +26,20 @@ def summary():
         with open('data.json') as json_file:
                 data = json.load(json_file)
 	stock_list = data.keys()
-	total_price = 0
-	total_share = 0 
+
 	summary_data = {}
 	
 	for x in stock_list: # dict
-		summary_data[x] = []
+		total_price = 0
+		total_share = 0 
+		summary_data[x] = [] # data in a list
 		for y in data[x]: # list of share and price
 				total_price = total_price + int(y['price'])
 				total_share = total_share + int(y['share'])
-				summary_data[x].append({'total_price':total_price} )
-				summary_data[x].append({'total_share': total_share})
+				summary_data[x][0] = {'total_price':total_price} 
+				summary_data[x][1] = {'total_share': total_share}
+				avr_price = total_price / total_share
+				summary_data[x][2] = {'avr_price': avr_price}
 	with open('summary_data.json', 'w') as outfile:
                 json.dump(summary_data, outfile)
 
